@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A6ADE0428320A840010DDC5 /* AVPlayerControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A6ADE0328320A840010DDC5 /* AVPlayerControl.m */; };
+		9A6ADE07283242080010DDC5 /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9A6ADE06283242080010DDC5 /* video.mp4 */; };
+		9A71353828339DB90066F2A6 /* image1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9A71353628339DB90066F2A6 /* image1.jpeg */; };
+		9A71353928339DB90066F2A6 /* image2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 9A71353728339DB90066F2A6 /* image2.jpeg */; };
+		9A71353C2833A8F00066F2A6 /* video2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9A71353B2833A8F00066F2A6 /* video2.mp4 */; };
+		9A71354E2836427D0066F2A6 /* TableViewCellCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A71354C2836427D0066F2A6 /* TableViewCellCustom.m */; };
+		9A71354F2836427D0066F2A6 /* TableViewCellCustom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A71354D2836427D0066F2A6 /* TableViewCellCustom.xib */; };
 		9A95F133282D151900169BEC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A95F132282D151900169BEC /* AppDelegate.m */; };
-		9A95F136282D151900169BEC /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A95F135282D151900169BEC /* SceneDelegate.m */; };
 		9A95F139282D151900169BEC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A95F138282D151900169BEC /* ViewController.m */; };
 		9A95F13C282D151900169BEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A95F13A282D151900169BEC /* Main.storyboard */; };
 		9A95F13E282D151900169BEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A95F13D282D151900169BEC /* Assets.xcassets */; };
@@ -17,11 +23,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A6ADE0228320A840010DDC5 /* AVPlayerControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVPlayerControl.h; sourceTree = "<group>"; };
+		9A6ADE0328320A840010DDC5 /* AVPlayerControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVPlayerControl.m; sourceTree = "<group>"; };
+		9A6ADE06283242080010DDC5 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
+		9A71353628339DB90066F2A6 /* image1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image1.jpeg; sourceTree = "<group>"; };
+		9A71353728339DB90066F2A6 /* image2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image2.jpeg; sourceTree = "<group>"; };
+		9A71353B2833A8F00066F2A6 /* video2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video2.mp4; sourceTree = "<group>"; };
+		9A71354B2836427D0066F2A6 /* TableViewCellCustom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellCustom.h; sourceTree = "<group>"; };
+		9A71354C2836427D0066F2A6 /* TableViewCellCustom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellCustom.m; sourceTree = "<group>"; };
+		9A71354D2836427D0066F2A6 /* TableViewCellCustom.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellCustom.xib; sourceTree = "<group>"; };
 		9A95F12E282D151900169BEC /* YoutubeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoutubeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A95F131282D151900169BEC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9A95F132282D151900169BEC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9A95F134282D151900169BEC /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		9A95F135282D151900169BEC /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		9A95F137282D151900169BEC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		9A95F138282D151900169BEC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		9A95F13B282D151900169BEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -61,13 +74,20 @@
 		9A95F130282D151900169BEC /* YoutubeApp */ = {
 			isa = PBXGroup;
 			children = (
+				9A71354B2836427D0066F2A6 /* TableViewCellCustom.h */,
+				9A71354C2836427D0066F2A6 /* TableViewCellCustom.m */,
+				9A71354D2836427D0066F2A6 /* TableViewCellCustom.xib */,
 				9A95F131282D151900169BEC /* AppDelegate.h */,
 				9A95F132282D151900169BEC /* AppDelegate.m */,
-				9A95F134282D151900169BEC /* SceneDelegate.h */,
-				9A95F135282D151900169BEC /* SceneDelegate.m */,
 				9A95F137282D151900169BEC /* ViewController.h */,
 				9A95F138282D151900169BEC /* ViewController.m */,
 				9A95F13A282D151900169BEC /* Main.storyboard */,
+				9A6ADE0228320A840010DDC5 /* AVPlayerControl.h */,
+				9A6ADE0328320A840010DDC5 /* AVPlayerControl.m */,
+				9A71353B2833A8F00066F2A6 /* video2.mp4 */,
+				9A6ADE06283242080010DDC5 /* video.mp4 */,
+				9A71353628339DB90066F2A6 /* image1.jpeg */,
+				9A71353728339DB90066F2A6 /* image2.jpeg */,
 				9A95F13D282D151900169BEC /* Assets.xcassets */,
 				9A95F13F282D151900169BEC /* LaunchScreen.storyboard */,
 				9A95F142282D151900169BEC /* Info.plist */,
@@ -132,9 +152,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A71353C2833A8F00066F2A6 /* video2.mp4 in Resources */,
 				9A95F141282D151900169BEC /* LaunchScreen.storyboard in Resources */,
 				9A95F13E282D151900169BEC /* Assets.xcassets in Resources */,
+				9A71353928339DB90066F2A6 /* image2.jpeg in Resources */,
 				9A95F13C282D151900169BEC /* Main.storyboard in Resources */,
+				9A71353828339DB90066F2A6 /* image1.jpeg in Resources */,
+				9A71354F2836427D0066F2A6 /* TableViewCellCustom.xib in Resources */,
+				9A6ADE07283242080010DDC5 /* video.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,9 +171,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A95F139282D151900169BEC /* ViewController.m in Sources */,
+				9A6ADE0428320A840010DDC5 /* AVPlayerControl.m in Sources */,
 				9A95F133282D151900169BEC /* AppDelegate.m in Sources */,
+				9A71354E2836427D0066F2A6 /* TableViewCellCustom.m in Sources */,
 				9A95F144282D151900169BEC /* main.m in Sources */,
-				9A95F136282D151900169BEC /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
