@@ -10,13 +10,12 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface TableViewCellCustom : UITableViewCell
-@property (nonatomic) AVPlayer *avP;
-@property (nonatomic) AVPlayerLayer *avLayer;
 
 - (void)setPlayer:(NSString*)videoName;
 
 - (void)SetLabelText:(NSString*)strTitle;
 
+- (void)play;
 @end
 
 
