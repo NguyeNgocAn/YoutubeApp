@@ -31,23 +31,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.listVideo registerNib:[UINib nibWithNibName: @"TableViewCellCustom" bundle: NSBundle.mainBundle] forCellReuseIdentifier:@"TableViewCellCustom"];
-    //idVideo = @"";
-    // Do any additional setup after loading the view.
-    //NSURL *url = [[NSURL alloc]initWithString:@"/Users/macmini/Downloads/Trees - 61992.mp4"];
-    
-//    NSURL *url = [[NSURL alloc] initWithString:@"https://file-examples.com/wp-content/uploads/2017/04/file_example_MP4_480_1_5MG.mp4"];
-//    url = [NSBundle.mainBundle URLForResource:@"video" withExtension:@"mp4"];
-//    _av = [AVPlayer playerWithURL:url];
-//    _layer = [AVPlayerLayer playerLayerWithPlayer:self.av];
-//    _layer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-//    _layer.frame = self.view.bounds;
-//    [self.view.layer addSublayer:self.layer];
-//    [self.av play];
     _arr = [[NSMutableArray alloc] initWithObjects:@"Chicken", @"Dog", nil];
     _imageArr = [[NSMutableArray alloc] initWithObjects:@"image1.jpeg", @"image2.jpeg", nil];
-    //_arrID = [[NSMutableArray alloc] initWithObjects:@"1", @"2", nil];
     _videoArr = [[NSMutableArray alloc] initWithObjects:@"video", @"video2", nil];
-    //[self playerView];
 }
 
 - (void) didReceiveMemoryWarning
@@ -65,9 +51,6 @@
     }
     NSString *stringCell;
     stringCell = [_arr objectAtIndex: indexPath.row];
-    //cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    
-    
     self.videoName = _videoArr[indexPath.row];    
     [cell setPlayer: _videoName];
     [cell SetLabelText: stringCell];
@@ -96,7 +79,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    //[av pause];
 }
 - (void)playerView{
     //set UIView
@@ -118,6 +100,7 @@
     [btnBack setImage: image forState: UIControlStateNormal];
     btnBack.tintColor = [UIColor whiteColor];
     [btnBack addTarget:self action:@selector(backToMainScreen:) forControlEvents:UIControlEventTouchDown];
+    
     [_viewPlayer addSubview: _player.view];
     [_viewPlayer addSubview: btnBack];
     
