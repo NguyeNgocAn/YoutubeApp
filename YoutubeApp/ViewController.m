@@ -36,7 +36,7 @@
     _arr = [[NSMutableArray alloc] init];
     _imageArr = [[NSMutableArray alloc] init];
     _videoArr = [[NSMutableArray alloc] init];
-    [self connection];
+    [self connection]; 
     //[self.listVideo reloadData];
 }
 
