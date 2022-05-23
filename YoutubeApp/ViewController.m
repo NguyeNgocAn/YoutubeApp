@@ -71,7 +71,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 200;
+    return 250;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
