@@ -67,6 +67,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
     NSLog(@"Hello World");
+    TableViewCellCustom *cell = [tableView dequeueReusableCellWithIdentifier:@"TableViewCellCustom" forIndexPath:indexPath];
+    [cell play];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
