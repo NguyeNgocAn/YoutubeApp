@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIStackView *stackView;
 @property (weak, nonatomic) IBOutlet UIButton *btnPlay;
 @property (nonatomic) AVPlayerViewController *control;
+//@property (strong, nonatomic) UIProgressView *progress;//Playback progress
+@property (nonatomic) UISlider *sliderTime;
 - (IBAction)btnPlayTouchDown:(id)sender;
 - (IBAction)btnFullScreenTouchDown:(id)sender;
 
@@ -28,17 +30,22 @@
     // Do any additional setup after loading the view.
     // remote file from server:
     //NSURL *url = [[NSURL alloc] initWithString:@""];
-    NSURL* url = [NSBundle.mainBundle URLForResource: _idVideo withExtension:@"mp4"];
+    NSURL* url = [[NSURL alloc]initWithString: self.idVideo];
     _av = [[AVPlayer alloc] initWithURL: url];
     _avC = [AVPlayerLayer playerLayerWithPlayer: self.av];
-    _avC.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    //CGFloat srcWidth = [UIScreen mainScreen].bounds.size.width;
-    //CGFloat srcHeight = [UIScreen mainScreen].bounds.size.height;
-    _avC.frame = _stackView.bounds;//self.view.frame;
-    //CGRectMake(0, 44, srcWidth, srcHeight/4);
-    //[self presentViewController: _avC animated: YES completion: nil];
+    _avC.videoGravity = AVLayerVideoGravityResizeAspect;
+    _avC.frame = _stackView.frame;
     [_stackView.layer addSublayer:self.avC];
+    //_progress = [[UIProgressView alloc]initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height/2, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height/12)];
+    //[self.view addSubview: self.progress];
+    //_sliderTime = [[UISlider alloc]init];
+    _sliderTime = [[UISlider alloc]initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height/2, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height/12)];
+    
+    [self.view addSubview: self.sliderTime];
+    //[self.sliderTime addTarget:self action:@selector(handleSliderChangeValue:event:) forControlEvents:UIControlEventTouchUpInside];
+    //[self addProgressObserver];
     [_av play];
+    [self createSlider];
 }
 
 /*
@@ -50,7 +57,6 @@
     // Pass the selected object to the new view controller.
 }
 */
-
 
 - (IBAction)btnFullScreenTouchDown:(id)sender {
     //[_av pause];
@@ -75,10 +81,11 @@
         [_av pause];
     }
 }
+
 //- (void)viewDidAppear:(BOOL)animated{
 //    [_av play];
 //}
-//
+
 //- (void)viewDidLayoutSubviews {
 //    [super viewDidLayoutSubviews];
 //    [_av play];
@@ -95,5 +102,24 @@
 //        [_av play];
 //    }
 //}
+
+
+
+-(IBAction)sliding:(id)sender {
+    CMTime newTime = CMTimeMakeWithSeconds(self.sliderTime.value, 1);
+    [self.av seekToTime:newTime];
+}
+
+- (void)createSlider{
+    AVPlayerItem *item = self.av.currentItem;
+    [self.av addPeriodicTimeObserverForInterval: CMTimeMake(1, 1) queue: dispatch_get_main_queue() usingBlock:^(CMTime time){
+        AVPlayerItem *item = self.av.currentItem;
+        self.sliderTime.value = CMTimeGetSeconds([self.av currentTime]);
+        self.sliderTime.maximumValue = CMTimeGetSeconds([item duration]);
+        [self.sliderTime addTarget:self action:@selector(sliding:) forControlEvents:UIControlEventValueChanged];
+        self.sliderTime.minimumValue = 0.0;
+        self.sliderTime.continuous = YES;
+    }];
+}
 
 @end

@@ -8,6 +8,7 @@
 #import "ViewController.h"
 #import "AVPlayerControl.h"
 #import "TableViewCellCustom.h"
+#import "PlayerViewController.h"
 
 @interface ViewController () 
 @property (weak, nonatomic) IBOutlet UITableView *listVideo;
@@ -49,7 +50,7 @@
 {
     static NSString *cellID = @"TableViewCellCustom";
     TableViewCellCustom *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-    NSString *stringCell = [self.arr objectAtIndex: indexPath.row];
+    NSString *stringCell = [self.arr objectAtIndex: indexPath.row];    
     _videoName = self.videoArr[indexPath.row];
     [cell setPlayer: self.videoName];
     [cell SetLabelText: stringCell];
@@ -67,8 +68,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
     NSLog(@"Hello World");
-    TableViewCellCustom *cell = [tableView dequeueReusableCellWithIdentifier:@"TableViewCellCustom" forIndexPath:indexPath];
-    [cell play];
+    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    AVPlayerControl *singleView = [storyBoard instantiateViewControllerWithIdentifier:@"AVPlayerControl"];
+    singleView.idVideo = self.videoName;
+    [self.navigationController pushViewController: singleView animated: YES];
+    //TableViewCellCustom *cell = [tableView dequeueReusableCellWithIdentifier:@"TableViewCellCustom" forIndexPath:indexPath];
+    //[cell play];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -81,35 +87,50 @@
     //[av pause];
 }
 
-//- (void)playerView{
-//    //set UIView
-//    _viewPlayer = [[UIView alloc]init];
-//    [_viewPlayer setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-//    [self.view addSubview: _viewPlayer];
-//
-//    //set avplayer
-//    NSURL *url = [NSBundle.mainBundle URLForResource: _videoName withExtension: @"mp4"];
-//    _av = [[AVPlayer alloc] initWithURL: url];
-//    _player = [[AVPlayerViewController alloc] init];
-//    _player.player = _av;
-//    _player.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height/4);
-//    _player.videoGravity = AVLayerVideoGravityResizeAspectFill;
-//
-//    //set back button
-//    UIImage *image = [UIImage systemImageNamed: @"arrow.backward"];
-//    UIButton* btnBack = [[UIButton alloc] initWithFrame: CGRectMake(0, 0, 44, 44)];
-//    [btnBack setImage: image forState: UIControlStateNormal];
-//    btnBack.tintColor = [UIColor whiteColor];
-//    [btnBack addTarget:self action:@selector(backToMainScreen:) forControlEvents: UIControlEventTouchDown];
-//    [_viewPlayer addSubview: _player.view];
-//    [_viewPlayer addSubview: btnBack];
-//
-//    [_av play];
-//}
+- (void)playerView{
+    //set UIView
+    _viewPlayer = [[UIView alloc]init];
+    [_viewPlayer setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    [self.view addSubview: _viewPlayer];
+
+    //set avplayer
+    NSURL *url = [NSBundle.mainBundle URLForResource: _videoName withExtension: @"mp4"];
+    _av = [[AVPlayer alloc] initWithURL: url];
+    _player = [[AVPlayerViewController alloc] init];
+    _player.player = _av;
+    _player.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height/4);
+    _player.videoGravity = AVLayerVideoGravityResizeAspectFill;
+
+    //set back button
+    if (@available(iOS 13.0, *)) {
+        UIImage *image = [UIImage systemImageNamed: @"arrow.backward"];
+        
+        UIButton* btnBack = [[UIButton alloc] initWithFrame: CGRectMake(0, 0, 44, 44)];
+        [btnBack setImage: image forState: UIControlStateNormal];
+        //[btnBack setTitle:@"X" forState:UIControlStateNormal];
+        btnBack.tintColor = [UIColor whiteColor];
+        [btnBack addTarget:self action:@selector(backToMainScreen:) forControlEvents: UIControlEventTouchDown];
+        [_viewPlayer addSubview: _player.view];
+        [_viewPlayer addSubview: btnBack];
+    } else {
+        // Fallback on earlier versions
+        UIButton* btnBack = [[UIButton alloc] initWithFrame: CGRectMake(0, 0, 44, 44)];
+        //[btnBack setImage: image forState: UIControlStateNormal];
+        [btnBack setTitle:@"X" forState:UIControlStateNormal];
+        btnBack.tintColor = [UIColor whiteColor];
+        [btnBack addTarget:self action:@selector(backToMainScreen:) forControlEvents: UIControlEventTouchDown];
+        [_viewPlayer addSubview: _player.view];
+        [_viewPlayer addSubview: btnBack];
+    }
+    
+
+    [_av play];
+}
 
 - (IBAction)backToMainScreen:(UIButton*)sender
 {
     [self.viewPlayer removeFromSuperview];
+    
 }
 
 -(void)connection{

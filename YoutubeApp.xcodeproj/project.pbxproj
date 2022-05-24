@@ -14,6 +14,7 @@
 		9A71353C2833A8F00066F2A6 /* video2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 9A71353B2833A8F00066F2A6 /* video2.mp4 */; };
 		9A71354E2836427D0066F2A6 /* TableViewCellCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A71354C2836427D0066F2A6 /* TableViewCellCustom.m */; };
 		9A71354F2836427D0066F2A6 /* TableViewCellCustom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A71354D2836427D0066F2A6 /* TableViewCellCustom.xib */; };
+		9A713577283B3B5E0066F2A6 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A713576283B3B5E0066F2A6 /* PlayerViewController.m */; };
 		9A95F133282D151900169BEC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A95F132282D151900169BEC /* AppDelegate.m */; };
 		9A95F139282D151900169BEC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A95F138282D151900169BEC /* ViewController.m */; };
 		9A95F13C282D151900169BEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A95F13A282D151900169BEC /* Main.storyboard */; };
@@ -32,6 +33,8 @@
 		9A71354B2836427D0066F2A6 /* TableViewCellCustom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellCustom.h; sourceTree = "<group>"; };
 		9A71354C2836427D0066F2A6 /* TableViewCellCustom.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellCustom.m; sourceTree = "<group>"; };
 		9A71354D2836427D0066F2A6 /* TableViewCellCustom.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellCustom.xib; sourceTree = "<group>"; };
+		9A713575283B3B5E0066F2A6 /* PlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
+		9A713576283B3B5E0066F2A6 /* PlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 		9A95F12E282D151900169BEC /* YoutubeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YoutubeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A95F131282D151900169BEC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9A95F132282D151900169BEC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -59,7 +62,6 @@
 			isa = PBXGroup;
 			children = (
 				9A95F130282D151900169BEC /* YoutubeApp */,
-				9A95F12F282D151900169BEC /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,6 +71,7 @@
 				9A95F12E282D151900169BEC /* YoutubeApp.app */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		9A95F130282D151900169BEC /* YoutubeApp */ = {
@@ -92,6 +95,9 @@
 				9A95F13F282D151900169BEC /* LaunchScreen.storyboard */,
 				9A95F142282D151900169BEC /* Info.plist */,
 				9A95F143282D151900169BEC /* main.m */,
+				9A713575283B3B5E0066F2A6 /* PlayerViewController.h */,
+				9A713576283B3B5E0066F2A6 /* PlayerViewController.m */,
+				9A95F12F282D151900169BEC /* Products */,
 			);
 			path = YoutubeApp;
 			sourceTree = "<group>";
@@ -175,6 +181,7 @@
 				9A95F133282D151900169BEC /* AppDelegate.m in Sources */,
 				9A71354E2836427D0066F2A6 /* TableViewCellCustom.m in Sources */,
 				9A95F144282D151900169BEC /* main.m in Sources */,
+				9A713577283B3B5E0066F2A6 /* PlayerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
