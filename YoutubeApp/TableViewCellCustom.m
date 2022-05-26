@@ -14,6 +14,7 @@
 @property (nonatomic, strong) AVPlayerLayer *avLayer;
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic, strong) UILabel* lb;
+@property (nonatomic, strong) UIScrollView *srv;
 //@property (nonatomic) UIView* viewPlayer;
 
 @end
@@ -24,16 +25,17 @@
     [super awakeFromNib];
     
     _avLayer = [AVPlayerLayer playerLayerWithPlayer:nil];//
-    _avLayer.frame = CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height*2/3);//self.contentView.bounds;
+    _avLayer.frame = CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height*1.6/3);//self.contentView.bounds;
     _avLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
 //    _avLayer.videoRect = AVLayerVideoGravityResizeAspectFill;
     
-    _lb = [[UILabel alloc] initWithFrame:CGRectMake(0, self.contentView.bounds.size.height - self.contentView.bounds.size.height/2, self.contentView.bounds.size.width, self.contentView.frame.size.height/2)];
+    _lb = [[UILabel alloc] initWithFrame:CGRectMake(0, self.contentView.frame.size.height*1.6/3, self.contentView.frame.size.width, self.contentView.frame.size.height/3)];
     _lb.lineBreakMode = NSLineBreakByWordWrapping;
     _lb.numberOfLines = 4;
     _lb.textAlignment = NSTextAlignmentLeft;
     _lb.textColor = [UIColor blackColor];
     _lb.font = [UIFont fontWithName:@"Arial" size:13];
+    
     
     [self.contentView.layer addSublayer: self.avLayer];
     [self.contentView addSubview: self.lb];
@@ -67,4 +69,8 @@
     //if()
 }
 
+-(void)pause{
+    NSLog(@"custom pause");
+    [self.avP pause];
+}
 @end

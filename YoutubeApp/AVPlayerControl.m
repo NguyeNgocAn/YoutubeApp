@@ -108,6 +108,7 @@
 -(IBAction)sliding:(id)sender {
     CMTime newTime = CMTimeMakeWithSeconds(self.sliderTime.value, 1);
     [self.av seekToTime:newTime];
+    [self.av play];
 }
 
 - (void)createSlider{

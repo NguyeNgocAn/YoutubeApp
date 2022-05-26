@@ -37,7 +37,9 @@
     _arr = [[NSMutableArray alloc] init];
     _imageArr = [[NSMutableArray alloc] init];
     _videoArr = [[NSMutableArray alloc] init];
-    [self connection]; 
+    [self connection: 1];
+    double screenHeigh = [UIScreen mainScreen].bounds.size.height;
+    NSLog (@"heigh screen: %f ", screenHeigh);
     //[self.listVideo reloadData];
 }
 
@@ -49,11 +51,19 @@
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellID = @"TableViewCellCustom";
+    
     TableViewCellCustom *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
-    NSString *stringCell = [self.arr objectAtIndex: indexPath.row];    
+    NSInteger totalRow = [self.listVideo numberOfRowsInSection: indexPath.section];
+    NSString *stringCell = [self.arr objectAtIndex: indexPath.row];
+    if(indexPath.row == 0 || indexPath.row == totalRow - 1)
+    {
+        [cell play];
+    }
     _videoName = self.videoArr[indexPath.row];
     [cell setPlayer: self.videoName];
     [cell SetLabelText: stringCell];
+    //CGRect rect = [self.listVideo convertRect:[self.listVideo rectForRowAtIndexPath:indexPath] toView:[self.listVideo superview]];
+    //NSLog(@"rect at row: %f", rect.origin.y);
     return cell;
 }
 
@@ -67,19 +77,17 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
-    NSLog(@"Hello World");
+    //NSLog(@"Hello World");
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    
     AVPlayerControl *singleView = [storyBoard instantiateViewControllerWithIdentifier:@"AVPlayerControl"];
     singleView.idVideo = self.videoName;
     [self.navigationController pushViewController: singleView animated: YES];
-    //TableViewCellCustom *cell = [tableView dequeueReusableCellWithIdentifier:@"TableViewCellCustom" forIndexPath:indexPath];
-    //[cell play];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 250;
+    double screenHeigh = [UIScreen mainScreen].bounds.size.height;
+    return screenHeigh/3;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -133,11 +141,11 @@
     
 }
 
--(void)connection{
+-(void)connection:(int)index{
     NSURL *URL = [NSURL URLWithString:[@"https://b11.cnnd.vn/kenh14-api/app/video/hot/" stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         NSMutableURLRequest *requestURL = [[NSMutableURLRequest alloc] initWithURL:URL];
         [requestURL setHTTPMethod:@"POST"];
-    NSString *myString = [NSString stringWithFormat:@"secret_key=gU4mI9lX8jM7kM6t&page_index=%d",1];
+    NSString *myString = [NSString stringWithFormat:@"secret_key=gU4mI9lX8jM7kM6t&page_index=%d", index];
         [requestURL setHTTPBody:[myString dataUsingEncoding:NSUTF8StringEncoding]];
     [NSURLConnection sendAsynchronousRequest:requestURL queue:NSOperationQueue.mainQueue completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
         if (data) {
@@ -146,12 +154,12 @@
             for (NSDictionary *item in videos) {
                 //NSLog(@"%@", item);
                 NSString *valueVideos = [item objectForKey: @"FileName"];
-                NSLog(@"%@", valueVideos);
+                //NSLog(@"%@", valueVideos);
                 valueVideos = [self hanleStringVideo: valueVideos];
                 [self.videoArr addObject: valueVideos];
                 NSString *valueTitle = [item objectForKey:@"Name"];
                 [self.arr addObject: valueTitle];
-                NSLog(@"%@", valueTitle);
+                //NSLog(@"%@", valueTitle);
             }
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.listVideo reloadData];
@@ -168,5 +176,43 @@
     stringInput = [stringInput substringWithRange:range];    
     return stringInput;
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)sender{
+  //executes when you scroll the scrollView
+    for (UITableViewCell *cell in [self.listVideo visibleCells]) {
+        NSIndexPath *indexPath = [self.listVideo indexPathForCell:cell];
+        
+        CGRect rect = [self.listVideo convertRect:[self.listVideo rectForRowAtIndexPath: indexPath] toView: [self.listVideo superview]];
+        TableViewCellCustom * theCell = (TableViewCellCustom *)[self.listVideo cellForRowAtIndexPath:indexPath];
+        double locationPlay = [UIScreen mainScreen].bounds.size.height/2 - rect.origin.y;
+        if((locationPlay >= 0 && locationPlay < [UIScreen mainScreen].bounds.size.height/3)) {
+            [theCell play];
+        }
+        else {
+            [theCell pause];
+        }
+        //NSLog(@"indexPath: %@",indexPath);
+        //NSLog(@"y: %f", rect.origin.y);
+        //NSLog(@"db: %f", db);
+    }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+ // execute when you drag the scrollView
+    //[self.av play];    
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+    //[self.av play];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    static int index = 2;
+    //NSLog(@"end dragg");
+    [self connection: index];
+}
+
+
 
 @end

@@ -16,6 +16,8 @@
 - (void)SetLabelText:(NSString*)strTitle;
 
 - (void)play;
+
+- (void)pause;
 @end
 
 
