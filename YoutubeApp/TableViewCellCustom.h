@@ -10,8 +10,10 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface TableViewCellCustom : UITableViewCell
+@property (nonatomic, strong) NSString *idVideo;
+@property (nonatomic, strong) NSString *idImage;
 
-- (void)setPlayer:(NSString*)videoName;
+- (void)setPlayer;
 
 - (void)SetLabelText:(NSString*)strTitle;
 

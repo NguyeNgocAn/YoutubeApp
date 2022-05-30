@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AVPlayerControl : UIViewController
+@interface AVPlayerControl : UIViewController<AVPlayerViewControllerDelegate> 
 @property (nonatomic) NSString *idVideo;
 @end
 

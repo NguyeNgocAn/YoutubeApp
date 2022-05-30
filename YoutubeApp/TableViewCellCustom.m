@@ -23,20 +23,16 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    
-    _avLayer = [AVPlayerLayer playerLayerWithPlayer:nil];//
-    _avLayer.frame = CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height*1.6/3);//self.contentView.bounds;
+    _avLayer = [AVPlayerLayer playerLayerWithPlayer:nil];
+    _avLayer.frame = CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height*2/3);//self.contentView.bounds;
     _avLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-//    _avLayer.videoRect = AVLayerVideoGravityResizeAspectFill;
     
-    _lb = [[UILabel alloc] initWithFrame:CGRectMake(0, self.contentView.frame.size.height*1.6/3, self.contentView.frame.size.width, self.contentView.frame.size.height/3)];
+    _lb = [[UILabel alloc] initWithFrame:CGRectMake(0, self.contentView.frame.size.height*2/3, self.contentView.frame.size.width, self.contentView.frame.size.height/3)];
     _lb.lineBreakMode = NSLineBreakByWordWrapping;
     _lb.numberOfLines = 4;
     _lb.textAlignment = NSTextAlignmentLeft;
     _lb.textColor = [UIColor blackColor];
     _lb.font = [UIFont fontWithName:@"Arial" size:13];
-    
-    
     [self.contentView.layer addSublayer: self.avLayer];
     [self.contentView addSubview: self.lb];
     // Initialization code
@@ -48,14 +44,11 @@
     //[self.avP play];
 }
 
-- (void)setPlayer:(NSString*)videoName{
-    
-    //_url = [[NSURL alloc] initWithString: videoName];
-    _url = videoName;
+- (void)setPlayer{
+    _url = self.idVideo;
     NSURL * url = [[NSURL alloc]initWithString: self.url];
-   // NSURL *strURL = ;
     _avP = [[AVPlayer alloc] initWithURL: url];
-    _avLayer.player = _avP;    
+    _avLayer.player = self.avP;
 }
 
 - (void)SetLabelText:(NSString*)strTitle
@@ -64,13 +57,20 @@
 }
 
 - (void)play {
-    NSLog( @"%@", self.url);
+//    if([self checkPlayerStatus] == TRUE){
+//        [self.avP play];
+//    } else{
+//        [self checkPlayerStatus];
+//        [self play];
+//    }
+    NSLog( @"%@", self.url);    
     [self.avP play];
-    //if()
 }
 
 -(void)pause{
     NSLog(@"custom pause");
     [self.avP pause];
+    //self.avP = nil;
+    //self.avLayer = nil;
 }
 @end

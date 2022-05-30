@@ -26,6 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _control.delegate = self;
     //NSString *idVideo = [[NSString alloc]init];
     // Do any additional setup after loading the view.
     // remote file from server:
@@ -45,7 +46,7 @@
     //[self.sliderTime addTarget:self action:@selector(handleSliderChangeValue:event:) forControlEvents:UIControlEventTouchUpInside];
     //[self addProgressObserver];
     [_av play];
-    [self createSlider];
+    [self createSlider];  
 }
 
 /*
@@ -64,8 +65,17 @@
     _control.player = _av;
     self.control.modalPresentationStyle = UIModalPresentationOverFullScreen;
     [self presentViewController: self.control animated: YES completion: nil];
-    //[_av play];
-    //_avC.frame = self.view.bounds;
+}
+
+- (void)playerViewController:(AVPlayerViewController *)playerViewController willEndFullScreenPresentationWithAnimationCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
+    [self.transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+
+        [self.av play];
+
+        } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+
+
+        }];
 }
 
 - (IBAction)btnPlayTouchDown:(id)sender {
@@ -83,6 +93,7 @@
 }
 
 //- (void)viewDidAppear:(BOOL)animated{
+//    [super viewDidAppear:animated];
 //    [_av play];
 //}
 
@@ -93,14 +104,13 @@
 
 //- (void)viewWillDisappear:(BOOL)animatedillDisappear
 //{
+//    [super viewWillDisappear:animatedillDisappear];
 //    [_av play];
 //}
 //-(void)viewWillAppear:(BOOL)animated
 //{
-//    if(_av.rate == 0)
-//    {
-//        [_av play];
-//    }
+//    [super viewWillAppear: animated];
+//    [self.av play];
 //}
 
 
@@ -112,7 +122,7 @@
 }
 
 - (void)createSlider{
-    AVPlayerItem *item = self.av.currentItem;
+    //AVPlayerItem *item = self.av.currentItem;
     [self.av addPeriodicTimeObserverForInterval: CMTimeMake(1, 1) queue: dispatch_get_main_queue() usingBlock:^(CMTime time){
         AVPlayerItem *item = self.av.currentItem;
         self.sliderTime.value = CMTimeGetSeconds([self.av currentTime]);
